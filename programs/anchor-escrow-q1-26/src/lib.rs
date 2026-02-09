@@ -11,12 +11,8 @@ declare_id!("H5CNM8BPgH63ut9RK7aoJBohjk8YPtErvrpjzadpFH33");
 #[program]
 pub mod anchor_escrow_q1_26 {
     use super::*;
-
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
+    pub fn make(ctx: Context<Make>, seed: u64, deposit: u64, receive: u64) -> Result<()> {
         Ok(())
     }
 }
 
-#[derive(Accounts)]
-pub struct Initialize {}
