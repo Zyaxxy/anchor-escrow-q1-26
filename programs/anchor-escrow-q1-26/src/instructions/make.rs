@@ -24,7 +24,7 @@ pub struct Make<'info>{
         init,
         payer = maker,
         seeds = [b"escrow", maker.key().as_ref(), seed.to_le_bytes().as_ref()],
-        space = Escrow::DISCRIMINATOR.len(),
+        space = Escrow::DISCRIMINATOR.len() + Escrow::INIT_SPACE,
         bump,
     )]
     pub escrow: Account<'info, Escrow>,
@@ -32,7 +32,7 @@ pub struct Make<'info>{
         init,
         payer=maker,
         associated_token::mint = mint_a,
-        associated_token::authority= maker,
+        associated_token::authority = escrow,
         associated_token::token_program=token_program,
     )]
     pub vault: InterfaceAccount<'info, TokenAccount>,
