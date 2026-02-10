@@ -15,14 +15,14 @@ pub struct Take<'info> {
     #[account(mut)]
     pub taker: Signer<'info>,
     #[account(mut)]
-    pub maker: Signer<'info>,
+    pub maker: SystemAccount<'info>,
     #[account(mint::token_program = token_program)]
-    pub mint_a: InterfaceAccount<'info, Mint>,
+    pub mint_a: Box<InterfaceAccount<'info, Mint>>,
     #[account(mint::token_program = token_program)]
-    pub mint_b: InterfaceAccount<'info, Mint>,
+    pub mint_b: Box<InterfaceAccount<'info, Mint>>,
 
     #[account(
-        init_if_needed,
+        init_if_needed, 
         payer = taker,
         associated_token::mint = mint_a,
         associated_token::authority= taker,
